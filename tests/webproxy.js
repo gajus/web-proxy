@@ -9,7 +9,7 @@ describe('DataStore.session', function () {
     var DataStore,
         dataStore;
     beforeEach(function () {
-        DataStore = require('../src/data-store.js');
+        DataStore = require('../src/datastore.js');
         DataStore = DataStore();
         dataStore = DataStore.session();
     });

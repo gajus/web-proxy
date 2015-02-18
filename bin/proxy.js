@@ -13,8 +13,8 @@ command = commander
     .option('--port <n>', 'Port on which to start the proxy.', _.parseInt)
     .action(function (env) {
         var program = Program(env),
-            WebProxy = require('../src/web-proxy'),
-            DataStore = require('../src/data-store'),
+            WebProxy = require('../src/webproxy'),
+            DataStore = require('../src/datastore'),
             dataStore,
             bunyan = require('bunyan'),
             logger = bunyan.createLogger({name: 'web-proxy'}),

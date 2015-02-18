@@ -31,3 +31,63 @@ For more information, refer to http://stackoverflow.com/a/13636565/368691.
 Web Proxy can forward all outgoing HTTP requests to another proxy.
 
 To enable forwarding, provide proxy credentials at the time of starting the proxy.
+
+## API
+
+WebProxy can be used programmatically.
+
+```js
+var WebProxy = require('../src/webproxy'),
+    config = {},
+    server;
+
+/**
+ * @param {Object} reference
+ * @param {String} reference.method
+ * @param {String} reference.url
+ * @return {Null} Returning null will allow HTTP request to progress.
+ * @return {Object} response
+ * @return {Number} response.statusCode
+ * @return {Object} response.headers
+ * @return {String} response.body
+ */
+config.read = function (request) {
+    // 
+};
+
+/**
+ * @param {Object} reference
+ * @param {String} reference.method
+ * @param {String} reference.url
+ * @param {Object} response
+ * @param {Number} response.statusCode
+ * @param {Object} response.headers
+ * @param {String} response.body
+ */
+config.write = function (request, response) {
+    //
+};
+
+/**
+ * @param {Object} config
+ * @param {Function} config.read
+ * @param {Function} config.write
+ * @param {Object} config.logger
+ */
+server = WebProxy(config);
+
+server.listen(9000);
+```
+
+### Data Store
+
+Data can be read/written using custom logic.
+
+There are two existing data store interfaces:
+
+| Name | Description |
+| --- | --- |
+| `DataStore.session` | Session persits data in an object for the duration of the script runtime. |
+| `DataStore.database` | Data is read/written to/from a MySQL database. |
+
+Refer to the [`./bin/proxy.php`](./bin/proxy.php) implementation to see a working example.

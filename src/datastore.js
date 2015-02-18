@@ -6,16 +6,6 @@ module.exports = function () {
     DataStore.database = function (db) {
         var ds = {};
 
-        /**
-         * @param {Object} reference
-         * @param {String} reference.method
-         * @param {String} reference.url
-         * @return {Null} Returning null will allow HTTP request to progress.
-         * @return {Object} response
-         * @return {Number} response.statusCode
-         * @return {Object} response.headers
-         * @return {String} response.body
-         */
         ds.read = function (request) {
             return db
                 .query('SELECT `status_code`, `headers`, `body` FROM `request` WHERE `method` = ? AND `url` = ? ORDER BY `created_at` DESC LIMIT 1', [
@@ -35,15 +25,6 @@ module.exports = function () {
                 });
         };
 
-        /**
-         * @param {Object} reference
-         * @param {String} reference.method
-         * @param {String} reference.url
-         * @param {Object} response
-         * @param {Number} response.statusCode
-         * @param {Object} response.headers
-         * @param {String} response.body
-         */
         ds.write = function (request, response) {
             return db
                 .query('INSERT INTO `request` SET `method` = ?, `url` = ?, `status_code` = ?, `headers` = ?, `body` = ?', [
