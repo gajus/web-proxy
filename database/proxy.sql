@@ -7,7 +7,7 @@
 #
 # Host: 173.194.108.161 (MySQL 5.6.22)
 # Database: proxy
-# Generation Time: 2015-02-18 10:23:31 +0000
+# Generation Time: 2015-02-18 14:05:57 +0000
 # ************************************************************
 
 
@@ -29,13 +29,12 @@ CREATE TABLE `request` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `method` varchar(10) NOT NULL,
   `url` varchar(510) NOT NULL DEFAULT '',
-  `payload` longtext,
-  `body` longblob NOT NULL,
   `status_code` int(10) unsigned NOT NULL,
   `headers` text NOT NULL,
+  `body` longblob NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED;
 
 
 

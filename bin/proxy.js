@@ -9,19 +9,21 @@ var _ = require('lodash'),
 
 command = commander
     .version(version)
-    // When proxy is configured, then HTTP requests are forwarded to another proxy.
-    // When database is configured, then data store used is a MySQL database.
     .command('listen')
     .option('--port <n>', 'Port on which to start the proxy.', _.parseInt)
     .action(function (env) {
-        var WebProxy = require('../src/web-proxy'),
+        var program = Program(env),
+            WebProxy = require('../src/web-proxy'),
             bunyan = require('bunyan'),
             logger = bunyan.createLogger({name: 'web-proxy'}),
             config = {},
             dataStore = {},
-            server;
+            server,
+            db;
 
         config.logger = logger;
+
+        db = program.database();
 
         /**
          * @param {Object} reference
@@ -41,10 +43,15 @@ command = commander
                 return;
             }
 
-            key = JSON.stringify([request.method, request.url]);
+            if (db) {
+                return db
+                    .query('SELECT `status_code`, `headers`, `body` FROM `request` WHERE `method` = ? AND `url` = ?')
+            } else {
+                key = JSON.stringify([request.method, request.url]);
 
-            if (dataStore[key]) {
-                return dataStore[key];
+                if (dataStore[key]) {
+                    return dataStore[key];
+                }
             }
 
             return;
@@ -66,7 +73,9 @@ command = commander
 
         server = WebProxy(config);
 
-        server.listen(9000);
+        server.listen(env.port);
+
+        logger.info('Listening on port ' + env.port + '.');
     });
 
 Program.requireOption(command, 'port');
