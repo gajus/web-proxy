@@ -7,6 +7,7 @@ var WebProxy;
  * @param {Function} config.read
  * @param {Function} config.write
  * @param {Object} config.logger
+ * @param {String} config.proxy
  */
 WebProxy = function (config) {
     var WebProxy = {},
@@ -40,6 +41,12 @@ WebProxy = function (config) {
         simple: false,
         resolveWithFullResponse: true
     });
+
+    if (config.proxy) {
+        rp = rp.defaults({
+            proxy: config.proxy
+        });
+    }
 
     server = http.createServer(function (req, res) {
         translator

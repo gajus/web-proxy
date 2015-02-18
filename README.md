@@ -5,6 +5,8 @@
 
 Web Proxy for intercepting and selectively caching HTTP requests.
 
+![cURL, web proxy, mitmproxy](./docs/web-proxy.png)
+
 ## Command Line Usage
 
 ```sh

@@ -24,6 +24,7 @@ command = commander
         DataStore = DataStore();
 
         config.logger = logger;
+        config.proxy = env.proxy;
 
         if (env.dbHost) {
             logger.info('Using a MySQL database.', {
