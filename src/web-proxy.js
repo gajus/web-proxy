@@ -32,6 +32,10 @@ WebProxy = function (config) {
 
     logger = config.logger;
 
+    if (!logger) {
+        logger = require('noop-logger');
+    }
+
     rp = rp.defaults({
         simple: false,
         resolveWithFullResponse: true
@@ -45,8 +49,8 @@ WebProxy = function (config) {
                     .resolve(config.read(request))
                     .then(function (response) {
                         if (response) {
-                            logger && logger.info({
-                                request: translator.requestToLogId(request),
+                            logger.info({
+                                request: translator.requestToLogId(request)
                             }, 'Read response from the data store.');
                             return response;
                         } else {
@@ -64,7 +68,7 @@ WebProxy = function (config) {
 
                         res.end(response.body);
                     });
-            })
+            });
     });
 
     /**
@@ -79,7 +83,7 @@ WebProxy = function (config) {
                     response = translator.incomingMessageToResponse(incomingMessage);
 
                 if (incomingMessage.statusCode !== 200) {
-                    logger && logger.warn('Not writing request. Status code is not 200.', {
+                    logger.warn('Not writing request. Status code is not 200.', {
                         request: translator.requestToLogId(request),
                         statusCode: response.statusCode
                     });
@@ -88,7 +92,7 @@ WebProxy = function (config) {
                 }
 
                 if (request.url !== incomingMessage.request.href) {
-                    logger && logger.warn('Not writing request. Original request URL is different from response URL.', {
+                    logger.warn('Not writing request. Original request URL is different from response URL.', {
                         request: translator.requestToLogId(request),
                         responseURL: incomingMessage.request.href
                     });
@@ -97,7 +101,7 @@ WebProxy = function (config) {
                 }
 
                 if (write) {
-                    logger && logger.info('Writing response to the data store.', {
+                    logger.info('Writing response to the data store.', {
                         request: translator.requestToLogId(request)
                     });
 

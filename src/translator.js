@@ -1,7 +1,6 @@
 'use strict';
 
-var translator = {},
-    Promise = require('bluebird');
+var translator = {};
 
 /**
  * Convert HTTP request stream to a promise that when resolved
@@ -15,7 +14,8 @@ var translator = {},
  * @return {String|Null} options.payload
  */
 translator.HTTPRequestToRequest = function (req) {
-    var request = {};
+    var request = {},
+        Promise = require('bluebird');
 
     request.url = req.url;
     request.method = req.method.toLowerCase();
