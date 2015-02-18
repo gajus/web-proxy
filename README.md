@@ -5,6 +5,10 @@
 
 Web Proxy for intercepting and selectively caching HTTP requests.
 
+## Use Case
+
+web-proxy has been designed to selecively cache outgoing HTTP requests for logging and re-itteration purposes, e.g. if you are running an inefficient web scrapping service or wish to re-run scrapping service using ealier fetched pages.
+
 ## Demo
 
 ![cURL, web proxy, mitmproxy](./docs/web-proxy.png)
