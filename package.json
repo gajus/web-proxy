@@ -1,7 +1,7 @@
 {
   "name": "web-proxy",
   "version": "1.0.0",
-  "description": "Web Proxy used for intercepting and selectively caching HTTP requests.",
+  "description": "Web Proxy for intercepting and selectively caching HTTP requests.",
   "dependencies": {
     "bluebird": "^2.9.9",
     "bunyan": "^1.3.3",
