@@ -5,7 +5,16 @@
 
 Web Proxy for intercepting and selectively caching HTTP requests.
 
+## Demo
+
 ![cURL, web proxy, mitmproxy](./docs/web-proxy.png)
+
+Illustration demonstrates cURL requests being made using web-proxy.
+
+web-proxy is configured to:
+
+* cache all HTTP GET requests that result in 200 response.
+* to forward all resulting HTTP requests to further proxy ([mitmproxy](https://mitmproxy.org/)).
 
 ## Command Line Usage
 
