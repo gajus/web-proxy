@@ -3,7 +3,7 @@
 [![Travis build status](http://img.shields.io/travis/gajus/web-proxy/master.svg?style=flat)](https://travis-ci.org/gajus/web-proxy)
 [![NPM version](http://img.shields.io/npm/v/web-proxy.svg?style=flat)](https://www.npmjs.org/package/web-proxy)
 
-Web Proxy for intercepting and selectively caching HTTP requests.
+Web Proxy for intercepting and selectively caching outgoing HTTP requests.
 
 ## Use Case
 
