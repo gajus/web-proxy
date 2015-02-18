@@ -21,6 +21,8 @@ command = commander
             config = {},
             server;
 
+        DataStore = DataStore();
+
         config.logger = logger;
 
         if (env.dbHost) {

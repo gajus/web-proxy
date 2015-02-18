@@ -2,6 +2,17 @@
   "name": "web-proxy",
   "version": "1.0.0",
   "description": "Web Proxy for intercepting and selectively caching HTTP requests.",
+  "main": "src/web-proxy.js",
+  "author": "Gajus Kuizinas <gk@anuary.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gajus/web-proxy"
+  },
+  "keywords": [
+    "mitm",
+    "proxy",
+    "http"
+  ],
   "dependencies": {
     "bluebird": "^2.9.9",
     "bunyan": "^1.3.3",
@@ -13,6 +24,7 @@
     "request-promise": "^0.4.0"
   },
   "devDependencies": {
+    "chai": "^2.0.0",
     "gulp": "^3.8.11",
     "gulp-eslint": "^0.4.3",
     "gulp-mocha": "^2.0.0"
