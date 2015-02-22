@@ -51,14 +51,6 @@ Program = function (command) {
 
         db = mysql.createConnection(config);
 
-        // Deficiency in the current promise-mysql API requires monkey-patching.
-        // https://github.com/lukeb-uk/node-promise-mysql/issues/3
-        db.query = function (sql, values) {
-            return db.then(function (connection) {
-                return connection.query(sql, values);
-            });
-        };
-
         return db;
     };
 

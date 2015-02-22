@@ -15,6 +15,7 @@ command = commander
         var program = Program(env),
             WebProxy = require('../src/webproxy'),
             DataStore = require('../src/datastore'),
+            Promise = require('bluebird'),
             dataStore,
             bunyan = require('bunyan'),
             logger = bunyan.createLogger({name: 'web-proxy'}),
@@ -32,7 +33,9 @@ command = commander
                 dbDatabase: env.dbDatabase
             });
 
-            dataStore = DataStore.database(program.database());
+            dataStore = program.database().then(function(db) {
+                return DataStore.database(db);
+            });
         } else {
             dataStore = DataStore.session();
         }
@@ -44,18 +47,20 @@ command = commander
                 return;
             }
 
-            return dataStore.read(request);
+            return dataStoreObj.read(request);
         };
 
         config.write = function (request, response) {
-            return dataStore.write(request, response);
+            return dataStoreObj.write(request, response);
         };
 
-        server = WebProxy(config);
+        Promise.join(dataStore, function(dataStoreObj) {
+            server = WebProxy(config);
 
-        server.listen(env.port);
+            server.listen(env.port);
 
-        logger.info('Listening on port ' + env.port + '.');
+            logger.info('Listening on port ' + env.port + '.');
+        });
     });
 
 Program.requireOption(command, 'port');
