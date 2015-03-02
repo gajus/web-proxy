@@ -5,6 +5,22 @@
 
 Web Proxy (forward proxy) for intercepting and selectively caching HTTP requests.
 
+```sh
+Usage: listen [options]
+
+Start HTTP proxy on a specified port.
+
+Options:
+
+    -h, --help                output usage information
+    --port <n>                Port on which to start the proxy.
+    --proxy <host:ip>         HTTP proxy server to use.
+    --db-host [host]          Database host.
+    --db-database [name]      Database name.
+    --db-user [user]          User used to access the database.
+    --db-password [password]  Password used to access the database.
+```
+
 ## Use Case
 
 web-proxy has been designed to selectively cache outgoing HTTP requests for logging and re-iteration purposes, e.g. if you are running an inefficient web scrapping service or wish to re-run scrapping service using earlier fetched pages.
