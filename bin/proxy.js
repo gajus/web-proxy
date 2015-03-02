@@ -7,9 +7,10 @@ var _ = require('lodash'),
     jsonfile = require('jsonfile'),
     version = jsonfile.readFileSync(__dirname + '/../package.json').version;
 
+
 command = commander
-    .version(version)
     .command('listen')
+    .description('Start HTTP proxy on a specified port.')
     .option('--port <n>', 'Port on which to start the proxy.', _.parseInt)
     .action(function (env) {
         var program = Program(env),
@@ -57,6 +58,7 @@ command = commander
 
         logger.info('Listening on port ' + env.port + '.');
     });
+
 
 Program.requireOption(command, 'port');
 
