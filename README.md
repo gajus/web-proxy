@@ -6,6 +6,8 @@
 Web Proxy (forward proxy) for intercepting and selectively caching HTTP requests.
 
 ```sh
+> node ./bin/proxy.js listen --help
+
 Usage: listen [options]
 
 Start HTTP proxy on a specified port.
