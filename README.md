@@ -3,11 +3,11 @@
 [![Travis build status](http://img.shields.io/travis/gajus/web-proxy/master.svg?style=flat)](https://travis-ci.org/gajus/web-proxy)
 [![NPM version](http://img.shields.io/npm/v/web-proxy.svg?style=flat)](https://www.npmjs.org/package/web-proxy)
 
-Web Proxy for intercepting and selectively caching outgoing HTTP requests.
+Web Proxy (forward proxy) for intercepting and selectively caching HTTP requests.
 
 ## Use Case
 
-web-proxy has been designed to selecively cache outgoing HTTP requests for logging and re-itteration purposes, e.g. if you are running an inefficient web scrapping service or wish to re-run scrapping service using ealier fetched pages.
+web-proxy has been designed to selectively cache outgoing HTTP requests for logging and re-iteration purposes, e.g. if you are running an inefficient web scrapping service or wish to re-run scrapping service using earlier fetched pages.
 
 ## Demo
 
@@ -67,7 +67,7 @@ var WebProxy = require('../src/webproxy'),
  * @return {String} response.body
  */
 config.read = function (request) {
-    // 
+    //
 };
 
 /**
