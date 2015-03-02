@@ -7,6 +7,7 @@ var _ = require('lodash'),
     jsonfile = require('jsonfile'),
     version = jsonfile.readFileSync(__dirname + '/../package.json').version;
 
+commander.version(version);
 
 command = commander
     .command('listen')

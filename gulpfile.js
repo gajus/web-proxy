@@ -24,3 +24,5 @@ gulp.task('watch', function () {
         './package.json'
     ], ['test']);
 });
+
+gulp.task('default', ['test']);
