@@ -6,7 +6,21 @@
 Web Proxy (forward proxy) for intercepting and selectively caching HTTP requests.
 
 ```sh
-> node ./bin/proxy.js listen --help
+> node ./bin/proxy.js --help
+
+Usage: proxy [options] [command]
+
+Commands:
+
+    cache [options]   Start HTTP cache proxy.
+    queue [options]   Start HTTP queue proxy.
+
+Options:
+
+    -h, --help     output usage information
+    -V, --version  output the version number
+
+> node ./bin/proxy.js cache --help
 
 Usage: listen [options]
 
@@ -21,6 +35,23 @@ Options:
     --db-database [name]      Database name.
     --db-user [user]          User used to access the database.
     --db-password [password]  Password used to access the database.
+
+> node ./bin/proxy.js queue --help
+
+Usage: queue [options]
+
+    Start HTTP queue proxy.
+
+Options:
+
+    -h, --help                       output usage information
+    --port <n>                       Port on which to start the proxy.
+    --delay <ms>                     The amount of milliseconds to delay the next request in the queue.
+    --upstream <http://host[:port]>  Forward all requests to upstream proxy server.
+    --db-host [host]                 Database host.
+    --db-database [name]             Database name.
+    --db-user [user]                 User used to access the database.
+    --db-password [password]         Password used to access the database.
 ```
 
 ## Use Case
