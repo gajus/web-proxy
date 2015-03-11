@@ -10,8 +10,8 @@ var _ = require('lodash'),
 commander.version(version);
 
 command = commander
-    .command('listen')
-    .description('Start HTTP proxy on a specified port.')
+    .command('cache')
+    .description('Start HTTP cache proxy.')
     .option('--port <n>', 'Port on which to start the proxy.', _.parseInt)
     .action(function (env) {
         var program = Program(env),
@@ -26,7 +26,7 @@ command = commander
         DataStore = DataStore();
 
         config.logger = logger;
-        config.proxy = env.proxy;
+        config.upstream = env.upstream;
 
         if (env.dbHost) {
             logger.info('Using a MySQL database.', {
@@ -63,7 +63,7 @@ command = commander
 
 Program.requireOption(command, 'port');
 
-Program.commandProxy(command);
+Program.commandUpstream(command);
 Program.commandDatabase(command);
 
 commander.parse(process.argv);

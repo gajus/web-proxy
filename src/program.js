@@ -76,20 +76,20 @@ Program.requireOption = function (command, optionName) {
 };
 
 /**
- * Enable proxy for the command.
+ * Enable upstream forwarding support.
  *
  * @param {Object} command
  */
-Program.commandProxy = function (command) {
+Program.commandUpstream = function (command) {
     command.setup = command.setup || {};
 
-    command.setup.proxy = true;
+    command.setup.upstream = true;
 
-    command.option('--proxy <host:ip>', 'HTTP proxy server to use.');
+    command.option('--upstream <http://host[:port]>', 'Forward all requests to upstream proxy server.')
 };
 
 /**
- * Enable database for the command.
+ * Enable database support.
  *
  * @param {Object} command
  */

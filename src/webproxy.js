@@ -42,9 +42,9 @@ WebProxy = function (config) {
         resolveWithFullResponse: true
     });
 
-    if (config.proxy) {
+    if (config.upstream) {
         rp = rp.defaults({
-            proxy: config.proxy
+            proxy: config.upstream
         });
     }
 
