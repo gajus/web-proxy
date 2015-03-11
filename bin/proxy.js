@@ -70,6 +70,7 @@ command = commander
     .command('queue')
     .description('Start HTTP queue proxy.')
     .option('--port <n>', 'Port on which to start the proxy.', _.parseInt)
+    .option('--delay <ms>', 'The amount of milliseconds to delay the next request in the queue.', _.parseInt)
     .action(function (env) {
         var program = Program(env),
             WebProxy = require('../src/webproxy'),
@@ -85,7 +86,9 @@ command = commander
         config.logger = logger;
         config.upstream = env.upstream;
         config.queue = {};
-        config.queue.delay = 200;
+        if (env.delay) {
+            config.queue.delay = env.delay;
+        }
 
         server = WebProxy(config);
 
