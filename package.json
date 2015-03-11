@@ -1,6 +1,6 @@
 {
   "name": "web-proxy",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Web Proxy (forward proxy) for intercepting and selectively caching HTTP requests.",
   "main": "src/web-proxy.js",
   "author": "Gajus Kuizinas <gk@anuary.com>",
