@@ -22,19 +22,19 @@ Options:
 
 > node ./bin/proxy.js cache --help
 
-Usage: listen [options]
+Usage: cache [options]
 
-Start HTTP proxy on a specified port.
+Start HTTP cache proxy.
 
 Options:
 
-    -h, --help                output usage information
-    --port <n>                Port on which to start the proxy.
-    --proxy <host:ip>         HTTP proxy server to use.
-    --db-host [host]          Database host.
-    --db-database [name]      Database name.
-    --db-user [user]          User used to access the database.
-    --db-password [password]  Password used to access the database.
+    -h, --help                       output usage information
+    --port <n>                       Port on which to start the proxy.
+    --upstream <http://host[:port]>  Forward all requests to upstream proxy server.
+    --db-host [host]                 Database host.
+    --db-database [name]             Database name.
+    --db-user [user]                 User used to access the database.
+    --db-password [password]         Password used to access the database.
 
 > node ./bin/proxy.js queue --help
 
