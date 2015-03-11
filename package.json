@@ -22,7 +22,7 @@
     "lodash": "^3.3.1",
     "noop-logger": "^0.1.0",
     "promise-mysql": "^1.0.0",
-    "request-promise": "^0.4.0"
+    "request": "^2.53.0"
   },
   "devDependencies": {
     "chai": "^2.1.0",

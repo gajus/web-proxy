@@ -13,14 +13,14 @@ var translator = {};
  * @return {String} options.headers
  * @return {String|Null} options.payload
  */
-translator.HTTPRequestToRequest = function (req) {
-    var request = {},
+translator.HTTPRequestToRequestDefinition = function (req) {
+    var requestDefinition = {},
         Promise = require('bluebird');
 
-    request.url = req.url;
-    request.method = req.method.toLowerCase();
-    request.headers = req.headers;
-    request.payload = new Promise(function (resolve) {
+    requestDefinition.url = req.url;
+    requestDefinition.method = req.method.toLowerCase();
+    requestDefinition.headers = req.headers;
+    requestDefinition.payload = new Promise(function (resolve) {
         var requestBody = null;
 
         req.on('data', function (data) {
@@ -32,18 +32,18 @@ translator.HTTPRequestToRequest = function (req) {
         });
     });
 
-    return Promise.props(request);
+    return Promise.props(requestDefinition);
 };
 
 /**
  * Maps request definition to options compatible with the 'request' package.
  */
-translator.requestToRequestOptions = function (request) {
+translator.requestDefinitionToRequestOptions = function (requestDefinition) {
     return {
-        uri: request.url,
-        method: request.method,
-        headers: request.headers,
-        body: request.payload
+        uri: requestDefinition.url,
+        method: requestDefinition.method,
+        headers: requestDefinition.headers,
+        body: requestDefinition.payload
     };
 };
 
@@ -52,11 +52,11 @@ translator.requestToRequestOptions = function (request) {
  * @return {String} options.url
  * @return {String} options.method
  */
-translator.requestToLogId = function (request) {
+translator.requestDefinitionToLogId = function (requestDefinition) {
     var logId = {};
 
-    logId.url = request.url;
-    logId.method = request.method;
+    logId.url = requestDefinition.url;
+    logId.method = requestDefinition.method;
 
     return logId;
 };
