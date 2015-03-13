@@ -86,27 +86,27 @@ WebProxy = function (config) {
                                 response = translator.incomingMessageToResponse(incomingMessage);
 
                             if (incomingMessage.statusCode !== 200) {
-                                logger.warn('Not writing request. Status code is not 200.', {
+                                logger.warn({
                                     request: translator.requestDefinitionToLogId(requestDefinition),
                                     statusCode: response.statusCode
-                                });
+                                }, 'Not writing request. Status code is not 200.');
 
                                 write = false;
                             }
 
                             if (requestDefinition.url !== incomingMessage.request.href) {
-                                logger.warn('Not writing request. Original request URL is different from response URL.', {
+                                logger.warn({
                                     request: translator.requestDefinitionToLogId(requestDefinition),
                                     responseURL: incomingMessage.request.href
-                                });
+                                }, 'Not writing request. Original request URL is different from response URL.');
 
                                 write = false;
                             }
 
                             if (write) {
-                                logger.info('Writing response to the data store.', {
+                                logger.info({
                                     request: translator.requestDefinitionToLogId(requestDefinition)
-                                });
+                                }, 'Writing response to the data store.');
 
                                 return Promise
                                     .resolve(config.write(requestDefinition, response))
