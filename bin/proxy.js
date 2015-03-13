@@ -40,11 +40,12 @@ command = commander
         }
 
         config.read = function (request) {
-            if (request.method !== 'get') {
+            // @todo Make this into a property.
+            /*if (request.method !== 'get') {
                 logger.trace('Not logging non GET request.');
 
                 return;
-            }
+            }*/
 
             return dataStore.read(request);
         };

@@ -1,6 +1,6 @@
 'use strict';
 
-var translator = {};
+let translator = {};
 
 /**
  * Convert HTTP request stream to a promise that when resolved
@@ -14,14 +14,14 @@ var translator = {};
  * @return {String|Null} options.payload
  */
 translator.HTTPRequestToRequestDefinition = function (req) {
-    var requestDefinition = {},
+    let requestDefinition = {},
         Promise = require('bluebird');
 
     requestDefinition.url = req.url;
     requestDefinition.method = req.method.toLowerCase();
     requestDefinition.headers = req.headers;
     requestDefinition.payload = new Promise(function (resolve) {
-        var requestBody = null;
+        let requestBody = '';
 
         req.on('data', function (data) {
             requestBody += data;
@@ -53,7 +53,7 @@ translator.requestDefinitionToRequestOptions = function (requestDefinition) {
  * @return {String} options.method
  */
 translator.requestDefinitionToLogId = function (requestDefinition) {
-    var logId = {};
+    let logId = {};
 
     logId.url = requestDefinition.url;
     logId.method = requestDefinition.method;
@@ -62,7 +62,7 @@ translator.requestDefinitionToLogId = function (requestDefinition) {
 };
 
 translator.incomingMessageToResponse = function (incomingMessage) {
-    var response = {};
+    let response = {};
 
     response.statusCode = incomingMessage.statusCode;
     response.headers = incomingMessage.headers;

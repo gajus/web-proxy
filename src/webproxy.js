@@ -49,6 +49,7 @@ WebProxy = function (config) {
         translator
             .HTTPRequestToRequestDefinition(httpRequest)
             .then(function (requestDefinition) {
+
                 if (config.read) {
                     return WebProxy.cache(requestDefinition);
                 }
@@ -93,7 +94,7 @@ WebProxy = function (config) {
                                 write = false;
                             }
 
-                            if (request.url !== incomingMessage.request.href) {
+                            if (requestDefinition.url !== incomingMessage.request.href) {
                                 logger.warn('Not writing request. Original request URL is different from response URL.', {
                                     request: translator.requestDefinitionToLogId(requestDefinition),
                                     responseURL: incomingMessage.request.href
@@ -155,7 +156,9 @@ WebProxy = function (config) {
      */
     WebProxy.request = function (requestDefinition) {
         return new Promise(function (resolve) {
-            let requestOptions = translator.requestDefinitionToRequestOptions(requestDefinition);
+            let requestOptions;
+
+            requestOptions = translator.requestDefinitionToRequestOptions(requestDefinition);
 
             if (config.upstream) {
                 requestOptions.proxy = config.upstream;

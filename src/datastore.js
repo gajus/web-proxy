@@ -61,7 +61,7 @@ module.exports = function () {
         };
 
         makeKey = function (request) {
-            return JSON.stringify([request.method, request.url]);
+            return JSON.stringify([request.method, request.url, request.payload]);
         };
 
         return ds;
